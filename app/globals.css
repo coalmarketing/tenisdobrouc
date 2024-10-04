@@ -2,24 +2,323 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@import url('https://fonts.googleapis.com/css2?family=Material+Icons&display=swap');
+
+/* Custom Font Faces */
+@font-face {
+  font-family: 'Benzin';
+  src: url('./../public/fonts/benzin/Supremat - Benzin Regular.ttf') format('truetype');
+  font-weight: normal;
+} 
+
+@font-face {
+  font-family: 'Benzin';
+  src: url('./../public/fonts/benzin/Supremat - Benzin Bold.ttf') format('truetype');
+  font-weight: bold;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@font-face {
+  font-family: 'Benzin';
+  src: url('./../public/fonts/benzin/Supremat - Benzin ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: 'Benzin';
+  src: url('./../public/fonts/benzin/Supremat - Benzin Medium.ttf') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Benzin';
+  src: url('./../public/fonts/benzin/Supremat - Benzin Semibold.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Proxima-Nova';
+  src: url('./../public/fonts/proxima/proxima_nova_regular.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Proxima-Nova';
+  src: url('./../public/fonts/proxima/proxima_nova_bold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Proxima-Nova';
+  src: url('./../public/fonts/proxima/proxima_nova_extrabold.ttf') format('truetype');
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: 'Proxima-Nova';
+  src: url('./../public/fonts/proxima/proxima_nova_regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Proxima-Nova';
+  src: url('./../public/fonts/proxima/proxima_nova_thin.ttf') format('truetype');
+  font-weight: 300;
+}
+
+/* Body Styles */
+body {
+  color: #171717; /* Foreground color */
+  background: #ffffff; /* Background color */
+  font-family: 'Proxima-Nova', Arial, Helvetica, sans-serif;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: contain;
+}
+
+/* Heading Styles */
+h1 {
+  font-family: 'Benzin';
+  font-size: 3.5rem;
+  color: black;
+  line-height: 130%;
+}
+
+p {
+  font-size: 19px;
+  font-weight: 400;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 16px;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* Navigation Link Styles */
+.nav-link {
+  position: relative;
+  display: inline-block;
+  padding: 1rem 0;
+  color: #000;
+  text-decoration: none;
 }
 
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 5px;
+  bottom: 5px;
+  left: 0;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+/* Hover Effects and Active States */
+.nav-link.zluta::after {
+  background-color: #EAA224;
+}
+
+.nav-link.zelena::after {
+  background-color: #4CAF50;
+}
+
+.nav-link.modra::after {
+  background-color: #2196F3;
+}
+
+/* Hover effect */
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Active state */
+.nav-link.active::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Additional styles for links */
+.domu-link::after {
+  background-color: #EAA224;
+}
+
+.klub-link::after {
+  background-color: #4CAF50;
+}
+
+.rezervace-link::after {
+  background-color: #2196F3;
+}
+
+.kontakt-link::after {
+  background-color: #EAA224;
+}
+
+/* Menu Animation Styles */
+@keyframes slideDown {
+  from {
+    max-height: 0;
+    opacity: 0;
+  }
+  to {
+    max-height: 500px; /* Adjust as needed */
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    max-height: 500px;
+    opacity: 1;
+  }
+  to {
+    max-height: 0;
+    opacity: 0;
+  }
+}
+
+.menu-open {
+  animation: slideDown 0.3s forwards;
+}
+
+.menu-close {
+  animation: slideUp 0.3s forwards;
+}
+
+/* Container Styles */
+.sirka {
+  width: min(1500px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+}
+
+/* Responsive Padding */
+@media (max-width: 1560px) {
+  .sirka {
+    padding: 0 50px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .sirka {
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .sirka {
+    padding: 0 20px;
+  }
+}
+
+/* Custom Calendar Styles */
+.custom-calendar .react-datepicker__day {
+  font-size: 16px;
+  font-family: 'Proxima-Nova';
+}
+
+.custom-calendar .react-datepicker__header {
+  font-size: 18px; 
+  font-weight: bold;
+  font-family: 'Proxima-Nova';
+  background-color: #fff3de; /* Header background */
+}
+
+.custom-calendar .react-datepicker__current-month {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Proxima-Nova';
+  color: #EAA224; /* Current month color */
+}
+
+.custom-calendar .react-datepicker__day-name {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Proxima-Nova';
+}
+
+.custom-calendar .react-datepicker__day--selected {
+  background-color: #EAA224; 
+  color: white;
+}
+
+.custom-calendar .react-datepicker__day--selected:hover {
+  background-color: #ca8a1a; 
+  color: white; 
+}
+
+.custom-calendar .react-datepicker__day--keyboard-selected {
+  background-color: #EAA224;
+  color: white;
+}
+
+.custom-calendar .react-datepicker__day--keyboard-selected:hover {
+  background-color: #ca8a1a; 
+  color: white;
+}
+
+.custom-calendar .react-datepicker__day--outside-month {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
+.custom-calendar .react-datepicker__day--selected.react-datepicker__day--outside-month,
+.custom-calendar .react-datepicker__day--keyboard-selected.react-datepicker__day--outside-month {
+  background-color: #EAA224 !important;
+  color: white !important;
+}
+
+.custom-calendar .react-datepicker__day--selected.react-datepicker__day--outside-month:hover,
+.custom-calendar .react-datepicker__day--keyboard-selected.react-datepicker__day--outside-month:hover {
+  background-color: #ca8a1a !important;
+  color: white !important;
+}
+
+/* Mobile Menu Styles */
+.menu-open {
+  display: block;
+}
+
+.menu-close {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .md\:hidden {
+    display: none;
+  }
+}
+
+/* Transition for mobile menu animation */
+.menu-enter {
+  transform: translateY(-100%);
+}
+
+.menu-enter-active {
+  transform: translateY(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.menu-exit {
+  transform: translateY(0);
+}
+
+.menu-exit-active {
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Utility class for text balance */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
