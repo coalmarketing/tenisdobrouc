@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 const Sponzori = () => {
   const sponsors = [
@@ -17,9 +18,11 @@ const Sponzori = () => {
       <div className="flex flex-wrap justify-center gap-4 py-8">
         {sponsors.map(sponsor => (
           <div key={sponsor.id} className="w-48 md:w-48 lg:w-48 p-2">
-            <img
+            <Image
               src={sponsor.logo}
               alt={sponsor.name}
+              width={192} // Šířka, můžeš upravit podle potřeby
+              height={96} // Výška, můžeš upravit podle potřeby
               className="w-full h-24 object-contain"
             />
           </div>

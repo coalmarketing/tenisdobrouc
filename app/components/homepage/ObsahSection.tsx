@@ -1,7 +1,6 @@
 "use client";
 
 import React from 'react';
-import { usePathname } from 'next/navigation';
 import imgKlub from './../../../public/img/IMG_2878.webp';
 import imgRezervace from './../../../public/img/IMG_2878.webp';
 import Button from './../../components/Button';
@@ -11,9 +10,6 @@ import { Call } from '@mui/icons-material';
 
 
 function ObsahSection(): JSX.Element {
-  const pathname = usePathname(); // Získání aktuální cesty
-  const colorClass = 'zluta'; // Nastavení pevné barvy na žlutou
-
   return (
     <div className="Home">
       <Section 

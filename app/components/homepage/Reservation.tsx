@@ -9,19 +9,10 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { registerLocale } from 'react-datepicker';
 import { cs } from 'date-fns/locale';
-import { useColor } from './../../contexts/ColorContext'; 
-import clsx from 'clsx'; 
-import { usePathname } from 'next/navigation';
 
 registerLocale('cs', cs);
 
 const Reservation: React.FC = () => {
-
-  const pathname = usePathname(); // Get the current path
-  const colorMap = useColor(); // Get the color map from context
-
-  const currentColor = colorMap[pathname as keyof typeof colorMap]?.color || 'zluta';
-
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [calendarOpen, setCalendarOpen] = useState<boolean>(false);
   const [openUpwards, setOpenUpwards] = useState<boolean>(false);

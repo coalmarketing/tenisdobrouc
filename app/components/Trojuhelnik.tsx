@@ -1,10 +1,8 @@
 "use client"; // Označuje komponentu jako Client Component
 
 import React from 'react';
-import { usePathname } from 'next/navigation';
 
 const Trojuhlenik = () => {
-  const pathname = usePathname(); // Získání aktuální cesty
 
   // Nahrazení `getColor` pevnou žlutou barvou
   const fillColor = "zluta"; // Pevná barva

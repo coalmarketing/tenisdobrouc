@@ -5,8 +5,8 @@ import { usePathname } from 'next/navigation';
 import Trojuhelnik from './Trojuhelnik';
 import Mrizka from './Mrizka';
 import type { StaticImageData } from 'next/image'; // Import StaticImageData type
-import { useColor } from './../contexts/ColorContext'; 
-import clsx from 'clsx'; 
+import { useColor } from './../contexts/ColorContext';
+import Image from 'next/image'; // Import Image
 
 interface SectionProps {
   nadpis: string;
@@ -68,10 +68,13 @@ const Section: React.FC<SectionProps> = ({
               </div>
             </div>
           )}
-          <img
+          <Image
             src={typeof img === 'string' ? img : img.src} // Handle both string and StaticImageData
             alt={alt}
             className={`relative ${imgVector === "m" ? 'z-20' : ''} ${imgVector === "t" ? 'z-10' : ''}`}
+            layout="responsive" // Optional: Use "responsive" layout for responsive images
+            width={500} // Set a width (adjust as necessary)
+            height={300} // Set a height (adjust as necessary)
           />
         </div>
       </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import React from 'react';
-import { usePathname } from 'next/navigation';
 import imgKlub from './../../../public/img/IMG_2878.webp';
 import imgRezervace from './../../../public/img/IMG_2878.webp';
 import Button from './../../components/Button';

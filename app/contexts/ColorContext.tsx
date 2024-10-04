@@ -11,7 +11,6 @@ type ColorMap = {
 };
 
 // Define a new type for colors
-type ColorKey = 'zluta' | 'zelena' | 'modra'; // Add other colors as needed
 
 // Create a context for the color map
 const ColorContext = createContext<ColorMap | undefined>(undefined);
