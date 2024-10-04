@@ -13,8 +13,8 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ children, to, width, onClick, outline = false }) => {
-  const pathname = usePathname(); // Get the current path
-  const colorMap = useColor(); // Get the color map from context
+  const pathname = usePathname();
+  const colorMap = useColor();
   
   // Dynamically get the current color from colorMap
   const currentColor = colorMap[pathname as keyof typeof colorMap]?.color || 'zluta';
