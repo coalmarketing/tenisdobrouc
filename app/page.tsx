@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './components/homepage/Header';
 import Reservation from './components/homepage/Reservation';
 import ObsahSection from './components/homepage/ObsahSection';
-import Articles from './components/homepage/Articles';
+import Articles from './components/Articles';
 import Sponzori from './components/Sponzori';
 
 

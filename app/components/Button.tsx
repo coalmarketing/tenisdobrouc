@@ -15,15 +15,27 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({ children, to, width, onClick, outline = false }) => {
   const pathname = usePathname();
   const colorMap = useColor();
-  
+
   // Dynamically get the current color from colorMap
   const currentColor = colorMap[pathname as keyof typeof colorMap]?.color || 'zluta';
 
+  const ColorButtonO = clsx({
+    'border-zluta text-zluta hover:bg-zluta': currentColor === 'zluta',
+    'border-modra text-modra hover:bg-modra': currentColor === 'modra',
+    'border-zelena text-zelena hover:bg-zelena': currentColor === 'zelena',
+  });
+
+  const ColorButton = clsx({
+    'bg-zluta hover:bg-zlutaHover': currentColor === 'zluta',
+    'bg-modra hover:bg-modraHover': currentColor === 'modra',
+    'bg-zelena hover:bg-zelenaHover': currentColor === 'zelena',
+  });
+
   const className = clsx(
-    'flex gap-4 w-full sm:w-fit items-center text-md md:text-xl font-400 justify-center py-3 px-6 transition-colors rounded-sm duration-300 border-2',
+    'flex gap-4 w-full sm:w-fit items-center text-md md:text-xl font-400 justify-center py-3 px-6 transition-colors rounded-sm duration-300',
     {
-      [`bg-${currentColor} hover:bg-${currentColor}Hover border-${currentColor} text-white`]: !outline,
-      [`border-${currentColor} text-${currentColor} bg-transparent hover:bg-${currentColor} hover:text-white`]: outline
+      [`${ColorButton} text-white`]: !outline,
+      [`${ColorButtonO} bg-transparent hover:text-white border-2`]: outline
     }
   );
 
