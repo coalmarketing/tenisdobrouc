@@ -1,8 +1,8 @@
 "use client";
 
 import React from 'react';
-import imgKlub from './../../../public/img/IMG_2878.webp';
-import imgRezervace from './../../../public/img/IMG_2878.webp';
+import imgKlub from './../../../public/img/IMG_2950.webp';
+import imgRezervace from './../../../public/img/IMG_3032.webp';
 import Button from './../../components/Button';
 import Section from '../../components/Section';
 import { Call } from '@mui/icons-material';

@@ -1,8 +1,9 @@
 "use client";
 
 import React from 'react';
-import imgKlub from './../../../public/img/IMG_2878.webp';
-import imgRezervace from './../../../public/img/IMG_2878.webp';
+import imgKlub from './../../../public/img/IMG_2898.webp';
+import imgRezervace from './../../../public/img/IMG_3580.webp';
+import imgHistorie from './../../../public/img/IMG_2950.webp';
 import Button from './../../components/Button';
 import KontaktSection from '../../components/KontaktSection';
 import Section from '../../components/Section';
@@ -64,7 +65,7 @@ function ObsahSection(): JSX.Element {
             Tenisový klub Dolní Dobrouč byl založen již v roce 1990 a od té doby se stal významným místem pro tenisové nadšence v našem regionu. Klub začínal s jediným antukovým kurtem, ale díky úsilí členů našeho klubu a sponzorů se postupně rozrostl na současných pět kurtů. Klub pravidelně pořádá turnaje, tréninky pro děti i dospělé a přispívá k rozvoji tenisu v Dolní Dobrouči. V roce 2010 klub oslavil své 20. výročí velkolepým turnajem a setkáním bývalých i současných členů. </p>
           </>
         )}
-        img={imgKlub} 
+        img={imgHistorie} 
         alt="Popis"
         pozadi={false} 
         reverse={false}
