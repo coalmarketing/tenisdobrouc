@@ -20,7 +20,8 @@ const Reservation: React.FC = () => {
   const buttonRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  const handleDateClick = () => {
+  const handleDateClick = (e: React.MouseEvent) => {
+    e.preventDefault(); // Zabrání přirozenému chování, aby stránka neposkočila
     if (buttonRef.current) {
       const rect = buttonRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
@@ -47,7 +48,7 @@ const Reservation: React.FC = () => {
 
   const handleReservationClick = () => {
     const formattedDate = startDate.toISOString().split('T')[0];
-    router.push(`/rezervace/?date=${formattedDate}`);
+    router.push(`https://rezervace.tenisdobrouc.cz/#/?date=${formattedDate}`);
   };
 
   useEffect(() => {
@@ -67,7 +68,7 @@ const Reservation: React.FC = () => {
           </p>
           <div className='flex flex-col xl:flex-row gap-3 sm:gap-4'>
             <div className='relative flex flex-col sm:flex-row gap-3' ref={buttonRef}>
-              <Button to="#" outline={true} onClick={handleDateClick}>
+              <Button outline={true} onClick={handleDateClick}> {/* Změněno, odstraněn atribut `to` */}
                 <CalendarMonth />
                 <IoMdArrowDropdown className='-mr-2 ml-3' />
                 <span className='font-medium'>{startDate.toLocaleDateString()}</span>
@@ -90,8 +91,8 @@ const Reservation: React.FC = () => {
             <Button onClick={handleReservationClick}>PŘEJÍT&nbsp;K&nbsp;REZERVACI</Button>
           </div>
           <div className='flex justify-center'>
-            <Button>
-              <Call className="text-white text-3xl" /> {/* Použijte komponentu Call pro ikonu */}
+            <Button to="tel:+420724843341">
+              <Call className="text-white text-3xl" />
               +420&nbsp;724&nbsp;843&nbsp;341
             </Button>
           </div>

@@ -11,6 +11,9 @@ import { Call } from '@mui/icons-material';
 
 
 function ObsahSection(): JSX.Element {
+
+  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD formát
+
   return (
     <div className="Home">
       <Section 
@@ -52,8 +55,8 @@ function ObsahSection(): JSX.Element {
         vectorPosition={false}
       >
         <div className='mt-8 xl:mt-0 flex gap-4 flex-col sm:flex-row'>
-          <Button to="/rezervace">REZERVOVAT</Button>
-          <Button to="/rezervace" outline={true}> <Call /> +420 724 843 341</Button>
+          <Button to={`https://rezervace.tenisdobrouc.cz/#/?date=${today}`}>REZERVOVAT</Button>
+          <Button to="tel:+420724843341" outline={true}> <Call /> +420 724 843 341</Button>
         </div>
       </Section>
 

@@ -10,9 +10,11 @@ interface ButtonProps {
   children: React.ReactNode;
   to?: string;
   width?: string;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void;
   outline?: boolean;
 }
+
+
 
 const Button: React.FC<ButtonProps> = ({ children, to, width, onClick, outline = false }) => {
   const pathname = usePathname();

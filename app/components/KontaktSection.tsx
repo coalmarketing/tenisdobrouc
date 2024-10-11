@@ -1,10 +1,17 @@
 import React from 'react';
 import { Mail, Call, AccessTime, LocationOn } from '@mui/icons-material';
 import Formular from './Formular';
+import { usePathname } from 'next/navigation'; 
+import { useColor } from './../contexts/ColorContext'; // Import the useColor hook
 
 const KontaktSection: React.FC = () => {
+  const pathname = usePathname();
+  const colorMap = useColor();
+
+  const currentColor = colorMap[pathname as keyof typeof colorMap]?.color || 'zluta';
+
   return (
-    <div className="sirka my-24 grid grid-cols-1 xl:gap-[7rem] xl:grid-cols-2 gap-0">
+    <div className={`sirka my-24 grid grid-cols-1 xl:gap-[7rem] xl:grid-cols-2 gap-0 text-${currentColor}`}>
       <div className="flex flex-col gap-4 w-full">
         <h1>Kontaktujte nás!</h1>
         <Formular />
@@ -14,21 +21,21 @@ const KontaktSection: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-8">
           <div className='flex flex-col gap-5'>
             <div className="flex items-center gap-3">
-              <Mail className="text-zluta text-3xl" />
-              <p>junek-tenis@email.cz</p>
+              <Mail className={`text-3xl text-${currentColor}`} />
+              <p className='text-black'>junek-tenis@email.cz</p>
             </div>
             <div className="flex items-center gap-3">
-              <Call className="text-zluta text-3xl" />
-              <p>+420 724 843 341</p>
+              <Call className={`text-3xl text-${currentColor}`} />
+              <p className='text-black'>+420 724 843 341</p>
             </div>
             <div className="flex items-top gap-3">
-              <AccessTime className="text-zluta text-3xl" />
-              <p>Otevírací doba:<br />Po-Ne: 7:30 - 21:30</p>
+              <AccessTime className={`text-3xl text-${currentColor}`} />
+              <p className='text-black'>Otevírací doba:<br />Po-Ne: 7:30 - 21:30</p>
             </div>
           </div>
           <div className='flex items-top gap-3'>
-            <LocationOn className="text-zluta text-5xl" />
-            <p>U kurtu 23<br />Dolní Dobrouč<br />Ústí nad Orlicí</p>
+            <LocationOn className={`text-5xl text-${currentColor}`} />
+            <p className='text-black'>U kurtu 23<br />Dolní Dobrouč<br />Ústí nad Orlicí</p>
           </div>
         </div>
 

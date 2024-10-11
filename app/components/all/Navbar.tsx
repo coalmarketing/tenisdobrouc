@@ -42,6 +42,8 @@ const Navbar: React.FC = () => {
     };
   }, [menuRef]);
 
+  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
+
   return (
     <nav className="shadow-md relative">
       <div className="sirka px-4">
@@ -75,13 +77,20 @@ const Navbar: React.FC = () => {
             {Object.keys(colorMap).map((key) => (
               <Link 
                 key={key}
-                href={key === '/domu' ? '/' : key} // Change '/domu' to '/'
+                href={
+                  key === '/domu' ? '/' 
+                  : key === '/rezervace' ? `https://rezervace.tenisdobrouc.cz/#/?date=${today}` 
+                  : key
+                }
                 className={`nav-link text-xl ${pathname === key ? `active ${currentColor}` : hoveredLink === key ? currentColor : ''}`}
                 onMouseEnter={() => setHoveredLink(key)}
                 onMouseLeave={() => setHoveredLink(null)}
               >
                 <p className={`font-bold text-${pathname === key ? currentColor : ''}`}>
-                  {key === '/domu' ? 'Domů' : key === '/klub' ? 'O klubu' : key === '/rezervace' ? 'Rezervace' : 'Kontakt'}
+                  {key === '/domu' ? 'Domů' 
+                  : key === '/klub' ? 'O klubu' 
+                  : key === '/rezervace' ? 'Rezervace' 
+                  : 'Kontakt'}
                 </p>
               </Link>
             ))}
@@ -98,7 +107,11 @@ const Navbar: React.FC = () => {
           {Object.keys(colorMap).map((key) => (
             <Link 
               key={key}
-              href={key === '/domu' ? '/' : key} // Change '/domu' to '/'
+              href={
+                key === '/domu' ? '/' 
+                : key === '/rezervace' ? `https://rezervace.tenisdobrouc.cz/#/?date=${today}`
+                : key
+              }
               className={`nav-link text-xl ${pathname === key ? `active ${currentColor}` : hoveredLink === key ? currentColor : ''}`}
               onMouseEnter={() => setHoveredLink(key)}
               onMouseLeave={() => setHoveredLink(null)}

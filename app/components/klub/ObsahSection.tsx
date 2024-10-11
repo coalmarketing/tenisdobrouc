@@ -51,7 +51,7 @@ function ObsahSection(): JSX.Element {
         vectorPosition={false}
       >
         <div className='mt-8 xl:mt-0 flex gap-4 flex-col sm:flex-row'>
-          <Button to="/rezervace"> <Call /> +420 724 843 341</Button>
+          <Button to="tel:+420724843341"> <Call /> +420 724 843 341</Button>
         </div>
       </Section>
 

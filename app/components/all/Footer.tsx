@@ -13,6 +13,9 @@ const Footer = () => {
   const colorMap = useColor(); // assuming `useColor` returns a color map object
   const currentColor = colorMap[pathname as keyof typeof colorMap]?.color || 'zluta';
 
+  // Získání aktuálního data
+  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD formát
+
   return (
     <div className="mt-auto">
       <footer className={clsx(`bg-${currentColor}`, 'text-white py-4')}>
@@ -27,7 +30,8 @@ const Footer = () => {
                 <Link href="/klub">
                   <p>O klubu</p>
                 </Link>
-                <Link href="/rezervace">
+                {/* Dynamicky vytvořený odkaz s aktuálním datem */}
+                <Link href={`https://rezervace.tenisdobrouc.cz/#/?date=${today}`}>
                   <p>Rezervace</p>
                 </Link>
                 <Link href="/kontakt">
