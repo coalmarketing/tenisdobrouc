@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { IoMdArrowDropdown } from "react-icons/io";
 import { CalendarMonth, Call } from '@mui/icons-material';
 import { useRouter } from 'next/navigation'; // Použijte next/navigation pro navigaci
-import Button from '../../app/components/Button';
+import Button from '../../components/Button';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { registerLocale } from 'react-datepicker';
