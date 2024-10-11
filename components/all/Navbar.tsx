@@ -42,6 +42,9 @@ const Navbar: React.FC = () => {
     };
   }, [menuRef]);
 
+  // Assuming today's date is in the format you want, you may want to modify this part according to your requirements.
+  const today = new Date().toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+
   return (
     <nav className="shadow-md relative">
       <div className="sirka px-4">
@@ -75,7 +78,7 @@ const Navbar: React.FC = () => {
             {Object.keys(colorMap).map((key) => (
               <Link 
                 key={key}
-                href={key === '/domu' ? '/' : key} // Change '/domu' to '/'
+                href={key === '/domu' ? '/' : key === '/rezervace' ? `https://rezervace.tenisdobrouc.cz/#/?date=${today}` : key} // Change '/rezervace' to the new URL
                 className={`nav-link text-xl ${pathname === key ? `active ${currentColor}` : hoveredLink === key ? currentColor : ''}`}
                 onMouseEnter={() => setHoveredLink(key)}
                 onMouseLeave={() => setHoveredLink(null)}
@@ -98,7 +101,7 @@ const Navbar: React.FC = () => {
           {Object.keys(colorMap).map((key) => (
             <Link 
               key={key}
-              href={key === '/domu' ? '/' : key} // Change '/domu' to '/'
+              href={key === '/domu' ? '/' : key === '/rezervace' ? `https://rezervace.tenisdobrouc.cz/#/?date=${today}` : key} // Change '/rezervace' to the new URL
               className={`nav-link text-xl ${pathname === key ? `active ${currentColor}` : hoveredLink === key ? currentColor : ''}`}
               onMouseEnter={() => setHoveredLink(key)}
               onMouseLeave={() => setHoveredLink(null)}

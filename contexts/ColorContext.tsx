@@ -24,7 +24,7 @@ export const ColorProvider: React.FC<{ children: ReactNode }> = ({
     "/domu": { color: "zluta", logo: logoZluta, hex: "#EAA224" }, // Žlutá hex
     "/klub": { color: "modra", logo: logoModra, hex: "#0BA6DF" }, // Modrá hex
     "/rezervace": { color: "zelena", logo: logoZelena, hex: "#45AF6A" }, // Zelená hex
-    "/kontakt": { color: "zluta", logo: logoZluta, hex: "#EAA224" }, // Žlutá hex
+    "/kontakt": { color: "zelena", logo: logoZelena, hex: "#45AF6A" }, // Žlutá hex
   };
 
   return (
