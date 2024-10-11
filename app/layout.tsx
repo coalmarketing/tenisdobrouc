@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from './components/all/Navbar';
-import Footer from './components/all/Footer';
-import Kurt from './components/all/Kurt';
-import { ColorProvider } from './contexts/ColorContext';
+import Navbar from "../components/all/Navbar";
+import Footer from "../components/all/Footer";
+import Kurt from "../components/all/Kurt";
+import { ColorProvider } from "../contexts/ColorContext";
 
 export const metadata: Metadata = {
   title: "TK Dolní Dobrouč",
@@ -22,14 +22,14 @@ export default function RootLayout({
   return (
     <html lang="cs">
       <body className="antialiased">
-      <ColorProvider>
-      <div className='relative overflow-hidden'>
-      <Navbar />
-        {children}
-        <Kurt />
-        </div>
-      <Footer />
-      </ColorProvider>
+        <ColorProvider>
+          <div className="relative overflow-hidden">
+            <Navbar />
+            {children}
+            <Kurt />
+          </div>
+          <Footer />
+        </ColorProvider>
       </body>
     </html>
   );

@@ -1,24 +1,29 @@
 "use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import logo from '../../../public/img/logo/TK-DD_logo_mono-light_long.png';
-import { Mail, Call, LocationOn } from '@mui/icons-material';
-import { useColor } from '../../contexts/ColorContext';
-import { usePathname } from 'next/navigation'; // změna importu
-import clsx from 'clsx';
+import Image from "next/image";
+import Link from "next/link";
+import logo from "../../public/img/logo/TK-DD_logo_mono-light_long.png";
+import { Mail, Call, LocationOn } from "@mui/icons-material";
+import { useColor } from "../../contexts/ColorContext";
+import { usePathname } from "next/navigation"; // změna importu
+import clsx from "clsx";
 
 const Footer = () => {
   const pathname = usePathname(); // použití usePathname
   const colorMap = useColor(); // assuming `useColor` returns a color map object
-  const currentColor = colorMap[pathname as keyof typeof colorMap]?.color || 'zluta';
+  const currentColor =
+    colorMap[pathname as keyof typeof colorMap]?.color || "zluta";
 
   return (
     <div className="mt-auto">
-      <footer className={clsx(`bg-${currentColor}`, 'text-white py-4')}>
+      <footer className={clsx(`bg-${currentColor}`, "text-white py-4")}>
         <div className="sirka mx-auto px-4 lg:px-0">
           <div className="flex flex-col lg:flex-row justify-between items-center lg:items-center">
-            <Image src={logo} alt="logo" className="h-24 w-auto lg:h-48 mb-4 lg:mb-0" />
+            <Image
+              src={logo}
+              alt="logo"
+              className="h-24 w-auto lg:h-48 mb-4 lg:mb-0"
+            />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 lg:mt-0 text-center lg:text-left">
               <div>
                 <Link href="/domu">
@@ -47,12 +52,18 @@ const Footer = () => {
               <div className="flex justify-start text-left items-top gap-3">
                 <LocationOn className="text-white text-5xl" />
                 <p>
-                  U kurtu 23<br />Dolní Dobrouč<br />Ústí nad Orlicí
+                  U kurtu 23
+                  <br />
+                  Dolní Dobrouč
+                  <br />
+                  Ústí nad Orlicí
                 </p>
               </div>
             </div>
           </div>
-          <p className="mt-8 text-center">Designed with &#10084; by coalmarketing.</p>
+          <p className="mt-8 text-center">
+            Designed with &#10084; by coalmarketing.
+          </p>
         </div>
       </footer>
     </div>
