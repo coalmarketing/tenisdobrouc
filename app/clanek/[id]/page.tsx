@@ -1,11 +1,14 @@
 // app/clanek/[id]/page.tsx
 
-import React from 'react';
-import { getArticle, ArticleWithImage } from '../../contexts/articleUtils';
-import Button from '../../components/Button';
-import Image from 'next/image'; // Import Next.js Image component
+import React from "react";
+import { getArticle, ArticleWithImage } from "../../../contexts/articleUtils";
+import Button from "../../../components/Button";
+import Image from "next/image"; // Import Next.js Image component
 
-const Clanek: React.FC<{ article: ArticleWithImage | null; error: string | null }> = ({ article, error }) => {
+const Clanek: React.FC<{
+  article: ArticleWithImage | null;
+  error: string | null;
+}> = ({ article, error }) => {
   if (error) {
     return <div className="p-4">Error: {error}</div>;
   }
@@ -31,7 +34,9 @@ const Clanek: React.FC<{ article: ArticleWithImage | null; error: string | null 
             {article.title.rendered}
           </h1>
           <div className="text-base text-gray-700">
-            <div dangerouslySetInnerHTML={{ __html: article.content.rendered }} />
+            <div
+              dangerouslySetInnerHTML={{ __html: article.content.rendered }}
+            />
           </div>
           <div className="mt-10">
             <Button to="/novinky">ZPĚT</Button>
@@ -43,7 +48,11 @@ const Clanek: React.FC<{ article: ArticleWithImage | null; error: string | null 
 };
 
 // Mark the Page component as async to handle async/await properly
-export default async function Page({ params }: { params: { id: string } }): Promise<JSX.Element> {
+export default async function Page({
+  params,
+}: {
+  params: { id: string };
+}): Promise<JSX.Element> {
   const { article, error } = await getArticle(params.id);
 
   return <Clanek article={article} error={error} />;

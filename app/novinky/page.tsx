@@ -1,12 +1,10 @@
-import React from 'react';
-import Articles from './../components/Articles';
-
+import React from "react";
+import Articles from "../../components/Articles";
 
 function Home() {
   return (
     <div className="Home">
-    <Articles/>
-
+      <Articles />
     </div>
   );
 }
