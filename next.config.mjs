@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-      domains: ['cms.aurora-studio.cz'],
+      domains: ['cms.tenisdobrouc.cz'],
     },
   };
   

@@ -26,16 +26,16 @@ const Articles: React.FC<ArticlesProps> = ({ count }) => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const pathname = usePathname(); // Použití usePathname
+  const pathname = usePathname();
 
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await axios.get<Article[]>('https://www.cms.aurora-studio.cz/wp-json/wp/v2/posts');
-        console.log('Articles response:', response.data); // Log the articles response
+        const response = await axios.get<Article[]>('https://cms.tenisdobrouc.cz/wp-json/wp/v2/posts'); // Změněná URL
+        console.log('Articles response:', response.data);
         const articlesWithImages = await Promise.all(response.data.map(async (article) => {
           try {
-            const imageResponse = await axios.get<{ source_url: string }>(`https://www.cms.aurora-studio.cz/wp-json/wp/v2/media/${article.featured_media}`);
+            const imageResponse = await axios.get<{ source_url: string }>(`https://cms.tenisdobrouc.cz/wp-json/wp/v2/media/${article.featured_media}`); // Změněná URL
             return {
               ...article,
               image: imageResponse.data.source_url
@@ -54,7 +54,7 @@ const Articles: React.FC<ArticlesProps> = ({ count }) => {
         } else {
           setError('An unknown error occurred.');
         }
-        console.error('Error fetching articles:', fetchError); // Log the fetch error
+        console.error('Error fetching articles:', fetchError);
         setLoading(false);
       }
     };
@@ -78,7 +78,6 @@ const Articles: React.FC<ArticlesProps> = ({ count }) => {
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 mt-10">
         
         {articlesToDisplay.map(article => (
-          
           <Link key={article.id} href={`/clanek/${article.id}`} legacyBehavior>
             <a className="block">
               <div className="relative flex flex-col bg-white rounded-[30px] shadow-[0px_20px_18px_5px_rgba(0,0,0,0.25)] h-full">
