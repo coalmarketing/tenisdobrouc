@@ -3,13 +3,16 @@ import Image from 'next/image';
 
 const Sponzori = () => {
   const sponsors = [
-    { id: 1, name: 'Contipro', logo: '/img/contipro.webp' },
-    { id: 2, name: 'Autoneum', logo: '/img/autoneum.webp' },
-    { id: 3, name: 'Corona', logo: '/img/corona.webp' },
-    { id: 4, name: 'Doktor kladivo', logo: '/img/kladivo.webp' },
-    { id: 5, name: 'Semo', logo: '/img/semo.webp' },
-    { id: 6, name: 'Mados', logo: '/img/mados.webp' },
-    { id: 7, name: 'Dolní Dobrouč', logo: '/img/dolni-dobrouc.webp' }
+    { id: 1, name: 'Coalfamily', logo: '/img/coalfamily_logo_long_color-black.png' },
+    { id: 2, name: 'Coalsoft', logo: '/img/coalsoft_logo_long_color-black.png' },
+    { id: 3, name: 'Coalmarketing', logo: '/img/coalmarketing_logo_long_color-black.png' },
+    { id: 4, name: 'Contipro', logo: '/img/contipro.webp' },
+    { id: 5, name: 'Autoneum', logo: '/img/autoneum.webp' },
+    { id: 6, name: 'Corona', logo: '/img/corona.webp' },
+    { id: 7, name: 'Doktor kladivo', logo: '/img/kladivo.webp' },
+    { id: 8, name: 'Semo', logo: '/img/semo.webp' },
+    { id: 9, name: 'Mados', logo: '/img/mados.webp' },
+    { id: 10, name: 'Dolní Dobrouč', logo: '/img/dolni-dobrouc.webp' }
   ];
 
   return (
