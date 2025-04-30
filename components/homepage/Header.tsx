@@ -25,7 +25,7 @@ const Header: React.FC = () => {
       <div className="relative h-full w-full z-10 flex items-start md:items-end">
         <div className="sirka mt-[10rem] md:mb-[10rem]">
           <p className="text-[3rem] sm:text-[4rem] md:text-[5.5rem] font-benzin tracking-wider font-800 w-20 leading-[110%] text-white">
-            TK DOLNÍ DOBROUČ2
+            TK DOLNÍ DOBROUČ
           </p>
           <p className="text-2xl text-white">Objevte s námi radost z tenisu!</p>
           <div
