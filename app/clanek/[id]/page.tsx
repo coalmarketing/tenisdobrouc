@@ -1,5 +1,7 @@
 // app/clanek/[id]/page.tsx
 
+export const runtime = 'edge';
+
 import React from "react";
 import { getArticle, ArticleWithImage } from "../../../contexts/articleUtils";
 import Button from "../../../components/Button";
