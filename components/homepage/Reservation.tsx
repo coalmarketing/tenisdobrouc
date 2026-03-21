@@ -71,7 +71,7 @@ const Reservation: React.FC = () => {
               <Button outline={true} onClick={handleDateClick}> {/* Změněno, odstraněn atribut `to` */}
                 <CalendarMonth />
                 <IoMdArrowDropdown className='-mr-2 ml-3' />
-                <span className='font-medium'>{startDate.toLocaleDateString()}</span>
+                <span className='font-medium'>{startDate.toLocaleDateString('cs-CZ')}</span>
               </Button>
               {calendarOpen && (
                 <div
