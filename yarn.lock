@@ -963,10 +963,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@netlify/plugin-nextjs@npm:^5.10.7":
-  version: 5.10.7
-  resolution: "@netlify/plugin-nextjs@npm:5.10.7"
-  checksum: 10c0/146fed096f949122bc009894588750077dda713ef8d03e82f2ad4cab1ebf20783f6d8b6242ae4e4dd0a5d69487a5a36e02bb3e65da853d9d8d9f51e3b8182750
+"@netlify/plugin-nextjs@npm:^5.15.9":
+  version: 5.15.9
+  resolution: "@netlify/plugin-nextjs@npm:5.15.9"
+  checksum: 10c0/37440870a61696c8c57e7f536499056ed7a644997f146d109882be5f3f6bea0f7e02c79879b4fafdc2fca54b84b7b779db3430cea5d3d13b3c05a06dc724f6a5
   languageName: node
   linkType: hard
 
@@ -2126,7 +2126,7 @@ __metadata:
     "@emotion/styled": "npm:^11.13.0"
     "@mui/icons-material": "npm:^6.1.1"
     "@mui/material": "npm:^6.1.1"
-    "@netlify/plugin-nextjs": "npm:^5.10.7"
+    "@netlify/plugin-nextjs": "npm:^5.15.9"
     "@types/node": "npm:^20"
     "@types/react": "npm:^18"
     "@types/react-dom": "npm:^18"
