@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 interface Article {
   title: {
     rendered: string;
@@ -20,33 +18,27 @@ export interface ArticleWithImage extends Article {
 
 export async function getArticle(id: string): Promise<{ article: ArticleWithImage | null; error: string | null }> {
   try {
-    // Změna URL na nový WordPress
-    const response = await axios.get<Article>(`https://cms.tenisdobrouc.cz/wp-json/wp/v2/posts/${id}`);
-    
+    const response = await fetch(`https://cms.tenisdobrouc.cz/wp-json/wp/v2/posts/${id}`);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const data: Article = await response.json();
+
     let imageUrl: string | undefined;
 
-    // Kontrola, zda je featured_media nastavené a zisk obrázku
-    if (response.data.featured_media) {
+    if (data.featured_media) {
       try {
-        const imageResponse = await axios.get<Media>(`https://cms.tenisdobrouc.cz/wp-json/wp/v2/media/${response.data.featured_media}`);
-        imageUrl = imageResponse.data.source_url;
+        const imageResponse = await fetch(`https://cms.tenisdobrouc.cz/wp-json/wp/v2/media/${data.featured_media}`);
+        if (imageResponse.ok) {
+          const imageData: Media = await imageResponse.json();
+          imageUrl = imageData.source_url;
+        }
       } catch (imageError) {
         console.error(`Error fetching image for article ${id}:`, imageError);
       }
     }
 
-    const article: ArticleWithImage = {
-      ...response.data,
-      image: imageUrl, // Nastavení obrázku, pokud byl úspěšně načten
-    };
-
-    return { article, error: null };
+    return { article: { ...data, image: imageUrl }, error: null };
   } catch (error) {
-    let errorMessage = 'An unknown error occurred.';
-    if (axios.isAxiosError(error)) {
-      errorMessage = error.message;
-    }
-
+    const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred.';
     return { article: null, error: errorMessage };
   }
 }
