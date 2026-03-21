@@ -1,10 +1,9 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
-import Image from 'next/image';
-import Button from './Button';
+import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
+import Button from "./Button";
 
 interface Article {
   id: number;
@@ -31,30 +30,35 @@ const Articles: React.FC<ArticlesProps> = ({ count }) => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await axios.get<Article[]>('https://cms.tenisdobrouc.cz/wp-json/wp/v2/posts'); // Změněná URL
-        console.log('Articles response:', response.data);
-        const articlesWithImages = await Promise.all(response.data.map(async (article) => {
-          try {
-            const imageResponse = await axios.get<{ source_url: string }>(`https://cms.tenisdobrouc.cz/wp-json/wp/v2/media/${article.featured_media}`); // Změněná URL
-            return {
-              ...article,
-              image: imageResponse.data.source_url
-            };
-          } catch (imageError) {
-            console.error(`Error fetching image for article ${article.id}:`, imageError);
-            return article;
-          }
-        }));
+        const response = await fetch(
+          "https://cms.tenisdobrouc.cz/wp-json/wp/v2/posts",
+        );
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data: Article[] = await response.json();
+        const articlesWithImages = await Promise.all(
+          data.map(async (article) => {
+            try {
+              const imageResponse = await fetch(
+                `https://cms.tenisdobrouc.cz/wp-json/wp/v2/media/${article.featured_media}`,
+              );
+              if (!imageResponse.ok) return article;
+              const imageData: { source_url: string } = await imageResponse.json();
+              return { ...article, image: imageData.source_url };
+            } catch (imageError) {
+              console.error(
+                `Error fetching image for article ${article.id}:`,
+                imageError,
+              );
+              return article;
+            }
+          }),
+        );
 
         setArticles(articlesWithImages);
         setLoading(false);
       } catch (fetchError) {
-        if (axios.isAxiosError(fetchError)) {
-          setError(fetchError.message);
-        } else {
-          setError('An unknown error occurred.');
-        }
-        console.error('Error fetching articles:', fetchError);
+        setError(fetchError instanceof Error ? fetchError.message : "An unknown error occurred.");
+        console.error("Error fetching articles:", fetchError);
         setLoading(false);
       }
     };
@@ -74,42 +78,54 @@ const Articles: React.FC<ArticlesProps> = ({ count }) => {
 
   return (
     <div className="sirka mt-20">
-      <h1 className='text-center'><span className='text-zluta'>Novinky</span> z kurtů</h1>
+      <h1 className="text-center">
+        <span className="text-zluta">Novinky</span> z kurtů
+      </h1>
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 mt-10">
-        
-        {articlesToDisplay.map(article => (
-          <Link key={article.id} href={`/clanek/${article.id}`} className="block">
-              <div className="relative flex flex-col bg-white rounded-[30px] shadow-[0px_20px_18px_5px_rgba(0,0,0,0.25)] h-full">
-                {article.image && (
-                  <Image
-                    src={article.image}
-                    alt={article.title.rendered}
-                    width={500}
-                    height={300}
-                    className="w-full object-cover h-[20rem] rounded-t-[30px]"
+        {articlesToDisplay.map((article) => (
+          <Link
+            key={article.id}
+            href={`/clanek/${article.id}`}
+            className="block"
+          >
+            <div className="relative flex flex-col bg-white rounded-[30px] shadow-[0px_20px_18px_5px_rgba(0,0,0,0.25)] h-full">
+              {article.image && (
+                <Image
+                  src={article.image}
+                  alt={article.title.rendered}
+                  width={500}
+                  height={300}
+                  className="w-full object-cover h-[20rem] rounded-t-[30px]"
+                />
+              )}
+              <div className="h-5 bg-zluta"></div>
+              <div className="p-6 flex-1 flex flex-col">
+                <h2 className="text-3xl font-benzin font-medium mb-4 line-clamp-3">
+                  {article.title.rendered}
+                </h2>
+                <div className="text-base text-gray-700 overflow-hidden flex-1">
+                  <div
+                    className="line-clamp-5"
+                    dangerouslySetInnerHTML={{
+                      __html: article.content.rendered,
+                    }}
                   />
-                )}
-                <div className="h-5 bg-zluta"></div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <h2 className="text-3xl font-benzin font-medium mb-4 line-clamp-3">{article.title.rendered}</h2>
-                  <div className="text-base text-gray-700 overflow-hidden flex-1">
-                    <div className="line-clamp-5" dangerouslySetInnerHTML={{ __html: article.content.rendered }} />
-                  </div>
-                  <div className="pt-4 mt-auto">
-                    <span className="text-zluta font-semibold">Více...</span>
-                  </div>
+                </div>
+                <div className="pt-4 mt-auto">
+                  <span className="text-zluta font-semibold">Více...</span>
                 </div>
               </div>
+            </div>
           </Link>
         ))}
       </div>
 
-      {pathname === '/' ? (
-        <div className='flex mt-16 justify-center'>
+      {pathname === "/" ? (
+        <div className="flex mt-16 justify-center">
           <Button to="/novinky">ZOBRAZIT BLOG</Button>
         </div>
       ) : (
-        <div className='flex mt-32'></div>
+        <div className="flex mt-32"></div>
       )}
     </div>
   );
