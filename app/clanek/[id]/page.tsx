@@ -53,9 +53,10 @@ const Clanek: React.FC<{
 export default async function Page({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }): Promise<JSX.Element> {
-  const { article, error } = await getArticle(params.id);
+  const { id } = await params;
+  const { article, error } = await getArticle(id);
 
   return <Clanek article={article} error={error} />;
 }
