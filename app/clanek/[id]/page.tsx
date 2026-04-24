@@ -1,7 +1,5 @@
 // app/clanek/[id]/page.tsx
 
-export const runtime = 'edge';
-
 import React from "react";
 import { getArticle, ArticleWithImage } from "../../../contexts/articleUtils";
 import Button from "../../../components/Button";
@@ -59,4 +57,15 @@ export default async function Page({
   const { article, error } = await getArticle(id);
 
   return <Clanek article={article} error={error} />;
+}
+
+export async function generateStaticParams() {
+  try {
+    const res = await fetch('https://cms.tenisdobrouc.cz/wp-json/wp/v2/posts?per_page=100');
+    if (!res.ok) return [];
+    const posts: { id: number }[] = await res.json();
+    return posts.map((post) => ({ id: String(post.id) }));
+  } catch {
+    return [];
+  }
 }
