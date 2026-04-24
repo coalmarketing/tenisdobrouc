@@ -47,7 +47,7 @@ const Formular = () => {
     }
     setStatus('submitting');
     try {
-      const res = await fetch(BASIN_ENDPOINT, {
+      const res = await fetch("https://usebasin.com/f/baa5a989eacb", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify(fields),
