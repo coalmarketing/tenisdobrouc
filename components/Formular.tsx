@@ -4,8 +4,6 @@ import React, { useState } from 'react';
 import { useColor } from './../contexts/ColorContext';
 import { usePathname } from 'next/navigation';
 
-const BASIN_ENDPOINT = 'https://usebasin.com/f/YOUR_ENDPOINT_TOKEN';
-
 type FormState = 'idle' | 'submitting' | 'success' | 'error';
 type FieldErrors = { name?: string; email?: string; message?: string };
 
